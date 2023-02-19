@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>HTML Tables</title>
+    <h1>CCSIT Co-op Registration FORM</h1>
+    <em>This form is required to be completed by all students planning to take Co-op Training in the summer for 2019</em>
+    <br></br>
+</head>
+<body>
+    <form>
+        <fieldset>
+            <legend>Student Information</legend>
+    <table>
+        <tr>
+            <td> <label for="username">Full Name*</label> </td>
+            <td> <input type="text" id="name"> </td>
+        </tr>
+        <tr>
+            <td> <label for="gender">Gender*</label> </td>
+                <td>
+                     <input type="radio" name="gend" value="male" checked/> Male 
+                     <input type="radio" name="gend" value="female" checked> Female 
+            </td>
+        </tr>
+        <tr>
+           <td> <label for="years"> Years of Study* </label> </td>
+           <td>
+              1 <input type="range" name="years" id="years"  min="1" max="4"  value="3" /> 4
+           </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="level"> Level Of Study* </label>
+            </td>
+            <td>
+                <input type="text" id="level" size="1" min="1" max="8" value="6"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="gpa">GPA (Range)*</label>
+            </td>
+            <td>
+                <select name="gpa" id="gpa">
+                    <option value="4">3.0 - 4.0</option>
+                    <option value="less">Less than 1.0</option>
+                    <option value="1">1.0 - 2.0</option>
+                    <option value="2">2.0 - 3.0</option>
+                    <option value="2">3.0 - 4.0</option>
+                    
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="email"> Email Address </label>
+            </td>
+            <td>
+                <input type="email" name="email" id="email">
+            </td>
+        </tr>
+    </table>
+    </fieldset>
+    <fieldset>
+        <legend> Pre-requisite Information </legend>
+        <table>
+        <p>Course Completed:</p>
+       
+       <tr>
+        <td>
+            <label for="select"><h3> <em> Please select all courses you have completed </em> </h3></label>
+        </td>
+       </tr>
+       
+       <tr>
+           
+            <td> <input type="checkbox" name="select" value="DCD" /> Database Concepts and Design </td>
+            <td> <input type="checkbox" name="select" value="DS" /> Data Structure </td>
+            <td> <input type="checkbox" name="select" value="PR" /> Professional Responsibility </td>
+            <td> <input type="checkbox" name="select" value="TR" /> Technical Reports </td>
+   
+       </tr>
+       <tr>
+           
+            <td> <input type="checkbox" name="select" value="WBS" /> Web-based Systems </td>
+            <td> <input type="checkbox" name="select" value="HCR" /> Human-Computer Interaction</td>
+            <td> <input type="checkbox" name="select" value="SE" /> Software Engineering </td>
+            <td> <input type="checkbox" name="select" value="SAD" /> System Analysis and Design </td>
+           
+       </tr>
+
+    </table>
+    </fieldset>
+    <fieldset>
+        <legend> Training Organization Information </legend>
+        <table>
+            <tr>
+                <td>
+                    <label for="company"> Company Name* </label>
+                </td>
+                <td>
+                    <input type="text" name="company" id="company">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="start"> Training Start Date* </label>
+                </td>
+                <td>
+                    <input type="date" name="date" id="date">
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+                    <label for="end"> Training End Date* </label>
+                </td>
+                <td>
+                    <input type="date" name="date" id="date">
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <label for="hours"> Working Hours at the Company* </label>
+                </td>
+                <td>
+                    <input type="time" id="time" name="time"> -
+                    <input type="time" id="time" name="time"> 
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+    <fieldset>
+        <legend> Attachments </legend>
+        <table>
+            <tr>
+                <td>
+                    <label for="trans"> Transcript* </label>
+                </td>
+                <td>
+                    <input type="file" id="file" name="file">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="letter"> Student Advisor Letter* </label>
+                </td>
+                <td>
+                    <input type="file" name="file2" id="file2">
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+   <fieldset>
+       <legend> Comments </legend>
+       <table>
+           <tr>
+               <td>
+                   <textarea placeholder="Enter any comments here for the Co-op Committee" name="comments" id="comments" cols="80" rows="6"></textarea>
+               </td>
+           </tr>
+       </table>
+   </fieldset>
+   <table>
+    <tr>
+        <td>
+            <input type="submit" id="app" name="app" value="Submit Application">
+        </td>
+        <td>
+            <input type="reset" name="res" id="res" value="Clear">
+        </td>
+        
+       </tr>
+   </table>
+  
+   
+    </form>
+</body>
+</html>
