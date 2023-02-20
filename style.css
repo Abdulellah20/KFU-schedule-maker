@@ -1,0 +1,286 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300&display=swap');
+
+      *{
+        background-color: rgb(41, 41, 41);
+        font-family: 'Noto Sans Arabic', sans-serif;
+        font-weight: bold;
+        }
+
+        .table-container {
+          display: flex;
+          justify-content: space-between;
+          align-items: center; 
+          width: auto;
+          margin-left: 20%;
+          height: auto;
+
+        }
+        
+        table {
+          width: 75%;
+          height: auto;
+          border-collapse: collapse;
+          background-color: #555;
+          color: #fff;
+          border-radius: 5px;
+          box-shadow: 0px 0px 10px #000;
+        }
+        
+      #save-button {
+        float: right;
+        margin-right: 5%;
+        padding: 10px;
+        height: 20%;
+        width: 16%;
+        background-color: #777;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 15px;
+      }
+      #save-button:hover {
+        background-color: rgb(88, 88, 88);
+      }
+      #save-button .fa-floppy-disk {
+        color: black;
+        margin: 5px;
+        font-size: 25px;
+        background-color: transparent;
+      }
+      
+    th, td {
+    border: 1px solid #777;
+    text-align: center;
+    padding: 8px;
+    width: 14%;
+    align-items: center;
+    justify-content: center;
+    }
+    th {
+      background-color: grey;
+    }
+    .scraped-table {
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+    width: 60%;  
+    height: 5%;  
+    margin: 20px auto;
+    direction: rtl;
+    table-layout: fixed;
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid #777;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px #000;
+}
+
+  .scraped-table td,
+    .scraped-table th{
+        border: 1px solid #777;
+    padding: 10px;
+    height: 5vh;
+    width: 100px; 
+    text-align: center;
+    word-wrap: break-word;
+    flex: 1;
+    position: relative;
+    font-size: 15px;
+    }
+
+
+  .selected-box {
+      width: 140px;
+      height: 80px;
+      background-color: #0099F8;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 10px;
+      color: white;
+
+
+  }
+  .selected-box:hover {
+    cursor: pointer;
+    background-color: rgb(88, 88, 88);
+  }
+
+
+  .plus-button {
+    background-color: #777;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out; /* add a 0.2s transition to the transform property */
+  }
+   .plus-button .fa-solid{
+    background-color: transparent;
+    font-size: 20px;
+  }
+
+  .plus-button:hover {
+    background-color: rgb(88, 88, 88);
+  }
+  
+.plus-sign {
+  color: #fff;
+  text-align: center;
+}
+
+
+#selected-courses {
+   text-align: center;
+   color: white;
+}
+button[id^="copy-button-"] {
+   border: none;
+   border-radius: 4px;
+   font-size: 14px;
+   background-color: #777;
+   color: #fff;
+   cursor: pointer;
+   margin-left: 8px;
+}
+button[id^="copy-button-"]:hover{
+  background-color: rgb(88, 88, 88);
+}
+
+span[id^="copy-message-"] {
+   display: inline-block;
+   font-size: 14px;
+   margin-left: 8px;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container {
+  width: 57%;
+  padding: 30px;
+  border: 1px solid #777;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px #000;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+label {
+  font-size: 16px;
+  color: #fff;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  padding: 15px;
+}
+
+select {
+  width: 185px;
+  height: 40px;
+  font-size: 15px;
+  padding: 4px;
+  background-color: #777;
+  border: 1px solid #999;
+  border-radius: 5px;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+select:hover{
+  background-color: rgb(88, 88, 88);
+}
+
+#ok-button{
+  font-size: 15px;
+  margin-left: 40px;
+  height: 40px;
+  width: 60px;
+  padding: 4px;
+  background-color: #777;
+  border: 1px solid #999;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+  margin-bottom: 20px;
+}
+
+
+#ok-button:active {
+  transform: scale(1.3);
+}
+
+input#ok-button:hover {
+  background-color: rgb(88, 88, 88);
+
+}
+
+
+  .remove-button {
+    color:  red;
+    font-size: 17px;
+    border: none;
+    position: relative;
+    top: -10px;
+    padding: 5px;
+    background-color: transparent;
+    cursor: pointer;
+    float: right;
+    display: none;
+  }
+   .remove-button .fa-regular{
+    background-color: transparent;
+    color:  red;
+  }
+  .remove-button .fa-regular:hover {
+    color: white;
+  }
+  .visible {
+    display: block;
+  }
+ #copy-button .fa-solid{
+  background-color: transparent;
+  font-size: 20px;
+}
+/*
+#menu{
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 25px;
+}
+#menu:hover{
+  border: none;
+  color: white;
+  cursor: pointer;
+  background-color: rgb(88, 88, 88);
+}
+#menu-list {
+  position: absolute;
+  display: none;
+}
+
+#menu-list a:hover{
+  border-radius: 5px;
+  width: 15%;
+
+  background-color: rgb(88, 88, 88);
+}
+#menu-list.open {
+  display: flex;
+  flex-direction: column;
+}*/
