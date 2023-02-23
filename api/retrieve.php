@@ -212,7 +212,7 @@ foreach ($tables as $table) {
     echo '<td class="type">' . $types[$i] . '</td>';
     echo '<td class="instructors">' . $instructors[$i] . '</td>';
     echo '<td class="course-number">' . $course_numbers[$i] . '</td>';
-    echo '<td><div class="plus-button">+</div></td>';
+    echo '<td><div class="plus-button"><i class="fa-solid fa-plus"></i></div></td>';
     echo '</tr>';
 }
 echo '</table>';
