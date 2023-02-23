@@ -7,17 +7,10 @@
   "routes": [
     { "src": "/(.*)",  "dest": "/api/retrieve.php" }
   ],
-
-  "version": 2,
-  "builds": [
-    {
-      "src": "retrieve.php",
-      "use": "@vercel/php"
-    }
-  ],
-
   "files": [
     "api/style.css"
   ]
 }
+
+
 
