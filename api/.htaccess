@@ -1,2 +1,3 @@
 RewriteEngine On
-RewriteRule ^api/(.*)$ https://kfu-schedule-maker.vercel.app/retrieve.php [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ /api/retrieve.php [L]
