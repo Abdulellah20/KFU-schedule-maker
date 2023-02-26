@@ -6,9 +6,6 @@
   },
   "routes": [
     { "src": "/(.*)",  "dest": "/api/retrieve.php" }
-  ],
-  "rewrites": [
-    { "source": "/favicon.ico", "destination": "/favicon.ico" }
   ]
 }
 
