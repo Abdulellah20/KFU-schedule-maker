@@ -21,72 +21,72 @@ function updateTable() {
     $url = 'https://banner.kfu.edu.sa:7710/KFU/ws?p_trm_code=144325&p_col_code=09&p_sex_code=12';
     switch ($selectedMajor) {
       case 'CS':
-        $start_table = 143;
-        $end_table = 235;
+        $start_table = 149;
+        $end_table = 250;
         break;
       case 'IS':
-        $start_table = 237;
-        $end_table = 291;
+        $start_table = 252;
+        $end_table = 306;
         break;
       case 'CN':
-        $start_table = 304;
-        $end_table = 352;
+        $start_table = 319;
+        $end_table = 369;
         break;
       case 'CE':
-        $start_table = 293;
-        $end_table = 302;
+        $start_table = 308;
+        $end_table = 317;
         break;
       case 'CS-old':
         $start_table = 3;
         $end_table = 56;
         break;
       case 'IS-old':
-        $start_table = 59;
-        $end_table = 114;
+        $start_table = 64;
+        $end_table = 120;
         break;
       case 'CE-old':
-        $start_table = 116;
-        $end_table = 135;
+        $start_table = 122;
+        $end_table = 141;
         break;
       case 'CN-old':
-        $start_table = 137;
-        $end_table = 141;
+        $start_table = 143;
+        $end_table = 147;
         break;
     }
   } else if ($selectedGender == 'Male') {
     $url = 'https://banner.kfu.edu.sa:7710/KFU/ws?p_trm_code=144325&p_col_code=09&p_sex_code=11';
     switch ($selectedMajor) {
       case 'CS':
-        $start_table = 174;
-        $end_table = 311;
+        $start_table = 180;
+        $end_table = 317;
         break;
       case 'IS':
-        $start_table = 313;
-        $end_table = 401;
+        $start_table = 319;
+        $end_table = 407;
         break;
       case 'CN':
-        $start_table = 444;
-        $end_table = 507;
+        $start_table = 450;
+        $end_table = 516;
         break;
       case 'CE':
-        $start_table = 403;
-        $end_table = 442;
+        $start_table = 409;
+        $end_table = 448;
         break;
       case 'CS-old':
         $start_table = 3;
-        $end_table = 73;
+        $end_table = 79;
         break;
       case 'IS-old':
-        $start_table = 79;
-        $end_table = 134;
+        $start_table = 81;
+        $end_table = 139;
         break;
       case 'CE-old':
-        $start_table = 136;
-        $end_table = 140;
+        $start_table = 141;
+        $end_table = 146;
         break;
       case 'CN-old':
-        $start_table = 143;
-        $end_table = 172;
+        $start_table = 148;
+        $end_table = 178;
         break;
     }
   }
