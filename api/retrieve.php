@@ -826,4 +826,32 @@ font-size: 20px;
     justify-content: center;
     font-size: 15px;
 }
+  fa-print
+
+#print-button {
+    float: right;
+    margin-right: 13%;
+    margin-top: 5px;
+    padding: 10px;
+    height: 15%;
+    width: 10%;
+    background-color: #777;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+  }
+  #print-button:hover {
+    background-color: rgb(88, 88, 88);
+  }
+  #print-button .fa-print {
+    color: black;
+    margin: 5px;
+    font-size: 23px;
+    background-color: transparent;
+  }
 </style>
