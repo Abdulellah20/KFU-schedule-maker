@@ -628,7 +628,7 @@ background-color: grey;
 label {
 
   font-size: 16px;
-  color: black;
+  color: white;
   padding: 15px;
   justify-content: center;
   align-items: center;
@@ -684,7 +684,7 @@ input#ok-button:hover {
 
 .scraped-table {
 border-collapse: collapse;
-color: black;
+color: white;
 width: 65%;  
 height: 5%;  
 margin: auto;
