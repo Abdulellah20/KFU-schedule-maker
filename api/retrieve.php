@@ -806,5 +806,24 @@ display: block;
 background-color: transparent;
 font-size: 20px;
 }
-
+.box-wrapper {
+  padding: 5px; 
+}
+#print-button{
+  float: right;
+    margin-right: 1%;
+    margin-top: 5px;
+    padding: 10px;
+    height: 20%;
+    width: 10%;
+    background-color: #777;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+}
 </style>
