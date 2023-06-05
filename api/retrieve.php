@@ -575,9 +575,10 @@ saveButton.addEventListener("click", function() {
 
   }
   
-  #save-button {
+ #save-button {
     float: right;
     margin-right: 13%;
+    margin-top: 12px;
     padding: 10px;
     height: 20%;
     width: 10%;
@@ -627,7 +628,7 @@ background-color: grey;
 label {
 
   font-size: 16px;
-  color: #fff;
+  color: black;
   padding: 15px;
   justify-content: center;
   align-items: center;
@@ -683,7 +684,7 @@ input#ok-button:hover {
 
 .scraped-table {
 border-collapse: collapse;
-color: white;
+color: black;
 width: 65%;  
 height: 5%;  
 margin: auto;
@@ -758,7 +759,7 @@ background-color: rgb(88, 88, 88);
 
 #selected-courses {
 text-align: center;
-color: white;
+color: black;
 }
 button[id^="copy-button-"] {
 border: none;
@@ -812,7 +813,7 @@ font-size: 20px;
 #print-button{
   float: right;
     margin-right: 1%;
-    margin-top: 5px;
+    margin-top: 8px;
     padding: 10px;
     height: 20%;
     width: 10%;
@@ -826,12 +827,10 @@ font-size: 20px;
     justify-content: center;
     font-size: 15px;
 }
-  fa-print
 
 #print-button {
     float: right;
-    margin-right: 13%;
-    margin-top: 5px;
+    margin-top: 13px;
     padding: 10px;
     height: 15%;
     width: 10%;
