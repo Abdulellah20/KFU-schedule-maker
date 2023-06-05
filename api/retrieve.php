@@ -759,7 +759,7 @@ background-color: rgb(88, 88, 88);
 
 #selected-courses {
 text-align: center;
-color: black;
+color: white;
 }
 button[id^="copy-button-"] {
 border: none;
