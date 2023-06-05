@@ -155,7 +155,7 @@ foreach ($tables as $table) {
         if ($cell_counter == 7) {
           $day = trim($cell->nodeValue);
 
-          if (strpos($day, "ح") !== false && strpos($day, "ث") !== false && strpos($day, "خ") !== false) {
+                  if (strpos($day, "ح") !== false && strpos($day, "ث") !== false && strpos($day, "خ") !== false) {
               $day = "SUN TUE THU";
           } else if (strpos($day, "ن") !== false && strpos($day, "ر") !== false) {
               $day = "MON WED";
@@ -163,6 +163,16 @@ foreach ($tables as $table) {
               $day = "WED THU";
           } else if (strpos($day, "ح") !== false && strpos($day, "خ") !== false) {
               $day = "SUN THU";
+            } else if (strpos($day, "ح") !== false && strpos($day, "ر") !== false) {
+              $day = "SUN WED";
+            } else if (strpos($day, "ح") !== false && strpos($day, "ث") !== false) {
+              $day = "SUN TUE";
+            } else if (strpos($day, "ن") !== false && strpos($day, "خ") !== false) {
+              $day = "MON THU";
+            } else if (strpos($day, "ث") !== false && strpos($day, "خ") !== false) {
+              $day = "TUE THU";
+            } else if (strpos($day, "ن") !== false && strpos($day, "ث") !== false) {
+              $day = "MON TUE";
           } else {
               switch ($day) {
                   case "ح":
