@@ -1,4 +1,3 @@
-
 <?php
 include 'schedule.html';
 // Declare variables outside the function
@@ -54,7 +53,7 @@ function updateTable() {
         break;
     }
   } else if ($selectedGender == 'Male') {
-   $url = 'https://banner.kfu.edu.sa:7710/KFU/ws?p_trm_code=144410&p_col_code=09&p_sex_code=11';
+    $url = 'https://banner.kfu.edu.sa:7710/KFU/ws?p_trm_code=144410&p_col_code=09&p_sex_code=11';
     switch ($selectedMajor) {
       case 'CS':
         $start_table = 150;
@@ -155,7 +154,7 @@ foreach ($tables as $table) {
         if ($cell_counter == 7) {
           $day = trim($cell->nodeValue);
 
-                  if (strpos($day, "ح") !== false && strpos($day, "ث") !== false && strpos($day, "خ") !== false) {
+          if (strpos($day, "ح") !== false && strpos($day, "ث") !== false && strpos($day, "خ") !== false) {
               $day = "SUN TUE THU";
           } else if (strpos($day, "ن") !== false && strpos($day, "ر") !== false) {
               $day = "MON WED";
@@ -232,7 +231,7 @@ echo '</table>';
 
 <script>
     const schedule = document.getElementById("schedule-table");
-    const times = ["0730 - 0845", "0900 - 1015", "1030 - 1145", "1230 - 1345", "1400 - 1515", "1530 - 1645",  "1700 - 1815" ,"2300 - 2350"];
+    const times = ["0730 - 0845", "0900 - 1015", "0945 - 1145", "1030 - 1145", "1230 - 1345", "1400 - 1515","1515 - 1715", "1730 - 1929","1730 - 1930", "1530 - 1645",  "1700 - 1815" ,"2300 - 2359"];
 
     for (let i = 0; i < times.length; i++) {
       const row = schedule.insertRow();
@@ -288,144 +287,239 @@ const crnSelector = ".crn";
 const typeSelector = ".type";
 const plusButtons = document.querySelectorAll(".plus-button");
 
-// object to keep track of occupied time slots
 const occupied = {};
+const courseInfoArray = [];
 
-plusButtons.forEach(function(plusButton) {
-  plusButton.addEventListener("click", function() {
-    const days = plusButton.parentNode.parentNode.querySelector(daySelector).textContent.trim().split(' ');
-    const time = plusButton.parentNode.parentNode.querySelector(timeSelector).textContent.trim();
-    const name = plusButton.parentNode.parentNode.querySelector(nameSelector).textContent.trim();
-    const crn = plusButton.parentNode.parentNode.querySelector(crnSelector).textContent.trim();
-    const type = plusButton.parentNode.parentNode.querySelector(typeSelector).textContent.trim();
+plusButtons.forEach(function (plusButton) {
+  plusButton.addEventListener("click", function () {
+    const days = plusButton.parentNode.parentNode
+      .querySelector(daySelector)
+      .textContent.trim()
+      .split(" ");
+    const time = plusButton.parentNode.parentNode
+      .querySelector(timeSelector)
+      .textContent.trim();
+    const name = plusButton.parentNode.parentNode
+      .querySelector(nameSelector)
+      .textContent.trim();
+    const crn = plusButton.parentNode.parentNode
+      .querySelector(crnSelector)
+      .textContent.trim();
+    const type = plusButton.parentNode.parentNode
+      .querySelector(typeSelector)
+      .textContent.trim();
 
-    console.log(`Days: ${days}, Time: ${time}, Name: ${name}, Type: ${type}`);
-
+    // Store course information and conflicts in the array
+    const conflicts = [];
     for (let i = 0; i < days.length; i++) {
       const day = days[i];
       if (occupied[day] && occupied[day][time]) {
-        alert(`Conflict: ${name} cannot be added at ${day} ${time}`);
-        return;
+        conflicts.push({
+          name: occupied[day][time],
+          day: day,
+          time: time,
+        });
+      }
+    }
+    courseInfoArray.push({
+      days: days,
+      time: time,
+      name: name,
+      type: type,
+      conflicts: conflicts,
+    });
+
+    let row;
+    for (let i = 1; i < scheduleTable.rows.length; i++) {
+      if (scheduleTable.rows[i].cells[0].innerHTML === time) {
+        row = scheduleTable.rows[i];
+        break;
+      }
+    }
+
+    if (!row) {
+      console.error(`No matching time found for time ${time}`);
+      return;
+    }
+
+    let col;
+    for (let i = 1; i < scheduleTable.rows[0].cells.length; i++) {
+      if (scheduleTable.rows[0].cells[i].innerHTML === days[0]) {
+        col = i;
+        break;
+      }
+    }
+
+    if (col === undefined) {
+      console.error(`No matching day found for days ${days}`);
+      return;
+    }
+
+    let box = document.createElement("div");
+    let text = document.createElement("p");
+    text.textContent = name;
+    text.style.backgroundColor = "transparent";
+    box.classList.add("selected-box");
+    box.appendChild(text);
+
+    let removeButton = document.createElement("button");
+    removeButton.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
+    removeButton.classList.add("remove-button");
+
+    // add CRN data attribute to box
+    box.setAttribute("data-crn", crn);
+
+    removeButton.addEventListener("click", function () {
+      let crn = box.getAttribute("data-crn");
+      box.remove();
+
+      // remove corresponding paragraph element
+      let selectedCourse = document.querySelector(
+        `#selected-courses [data-crn="${crn}"]`
+      );
+      if (selectedCourse) {
+        selectedCourse.remove();
       }
 
-      let row;
-      for (let i = 1; i < scheduleTable.rows.length; i++) {
-        if (scheduleTable.rows[i].cells[0].innerHTML === time) {
-          row = scheduleTable.rows[i];
-          break;
+      // update occupied time slots object
+      for (let i = 0; i < days.length; i++) {
+        const day = days[i];
+        if (occupied[day] && occupied[day][time]) {
+          delete occupied[day][time];
         }
       }
+    });
 
-      if (!row) {
-        console.error(`No matching time found for time ${time}`);
-        return;
-      }
+    box.appendChild(removeButton);
+    let boxWrapper = document.createElement("div");
+    boxWrapper.classList.add("box-wrapper");
+    boxWrapper.appendChild(box);
 
-      let col;
-      for (let i = 1; i < scheduleTable.rows[0].cells.length; i++) {
-        if (scheduleTable.rows[0].cells[i].innerHTML === day) {
-          col = i;
-          break;
-        }
-      }
-
-      let box = document.createElement("div");
-      let text = document.createElement("p");
-      text.textContent = name;
-      text.style.backgroundColor = "transparent";
-      box.classList.add("selected-box");
-      box.appendChild(text);
-
-      let removeButton = document.createElement("button");
-      removeButton.innerHTML = '<i class="fa-regular fa-trash-can"></i>';
-      removeButton.classList.add("remove-button");
-
-      // add CRN data attribute to box
-      box.setAttribute("data-crn", crn);
-
-      removeButton.addEventListener("click", function() {
-        let crn = box.getAttribute("data-crn");
-        box.remove();
-
-        // remove corresponding paragraph element
-        let selectedCourse = document.querySelector(`#selected-courses [data-crn="${crn}"]`);
-        if (selectedCourse) {
-          selectedCourse.remove();
-        }
-
-        // update occupied time slots object
-        for (let i = 0; i < days.length; i++) {
-          const day = days[i];
-          if (occupied[day] && occupied[day][time]) {
-            delete occupied[day][time];
-          }
-        }
-      });
-
-      box.appendChild(removeButton);
-      row.cells[col].appendChild(box);
+    row.cells[col].appendChild(boxWrapper);
 
     // update occupied time slots object
-    if (!occupied[day]) {
-      occupied[day] = {};
+    for (let i = 0; i < days.length; i++) {
+      const day = days[i];
+      if (!occupied[day]) {
+        occupied[day] = {};
+      }
+      occupied[day][time] = name;
     }
-    occupied[day][time] = true;
 
-    box.addEventListener("click", function() {
+    box.addEventListener("click", function () {
       removeButton.classList.toggle("visible");
     });
 
     // change the plus button to check icon
     plusButton.innerHTML = '<i class="fa-solid fa-check"></i>';
 
-      // For selected courses
-      let selectedcourses = document.getElementById("selected-courses");
+    // For selected courses
+    let selectedcourses = document.getElementById("selected-courses");
 
-      let selectedCourse = document.querySelector(`#selected-courses [data-crn="${crn}"]`);
-      if (!selectedCourse) {
-        selectedcourses.innerHTML = selectedcourses.innerHTML + `<div style="display:inline-block; margin: 8px;" data-crn="${crn}">
-          <p>${name} <br> ${type} <br> CRN: ${crn} <br> <button id="copy-button-${crn}">Copy</button></p>
-          <span id="copy-message-${crn}"></span>
-        </div>`;
-      }
+    let selectedCourse = document.querySelector(
+      `#selected-courses [data-crn="${crn}"]`
+    );
+    if (!selectedCourse) {
+      selectedcourses.innerHTML =
+        selectedcourses.innerHTML +
+        `<div style="display:inline-block; margin: 8px;" data-crn="${crn}">
+        <p>${name} <br> ${type} <br> CRN: ${crn} <br> <button id="copy-button-${crn}">Copy</button></p>
+        <span id="copy-message-${crn}"></span>
+      </div>`;
+    }
 
-      let copyButtons = document.querySelectorAll(`#selected-courses [id^="copy-button-"]`);
-copyButtons.forEach(function(copyButton) {
-  let crn = copyButton.id.replace("copy-button-", "");
-  let crnInfo = `${crn}`;
-  copyButton.addEventListener("click", function() {
-    // Get the text to copy
-    let courseInfo = `${crn}`;
+    let copyButtons = document.querySelectorAll(
+      `#selected-courses [id^="copy-button-"]`
+    );
+    copyButtons.forEach(function (copyButton) {
+      let crn = copyButton.id.replace("copy-button-", "");
+      let crnInfo = `${crn}`;
+      copyButton.addEventListener("click", function () {
+        // Get the text to copy
+        let courseInfo = `${crn}`;
 
-    // Write the text to the clipboard
-    navigator.clipboard.writeText(courseInfo).then(function() {
-      // Set copy message and button icon and style
-      let copyMessage = document.querySelector(`#copy-message-${crn}`);
-      copyMessage.textContent = "Copied!";
-      copyButton.innerHTML = '<i class="fa-solid fa-check"></i>';
-      copyButton.style.backgroundColor = "transparent";
-      copyButton.style.fontSize = "20px";
+        // Write the text to the clipboard
+        navigator.clipboard.writeText(courseInfo).then(
+          function () {
+            // Set copy message and button icon and style
+            let copyMessage = document.querySelector(
+              `#copy-message-${crn}`
+            );
+            copyMessage.textContent = "Copied!";
+            copyButton.innerHTML = '<i class="fa-solid fa-check"></i>';
+            copyButton.style.backgroundColor = "transparent";
+            copyButton.style.fontSize = "20px";
 
-      // Revert copy message and button icon and style after 3 seconds
-      setTimeout(function() {
-        copyMessage.textContent = "";
-        copyButton.innerHTML = 'Copy';
-        copyButton.style.backgroundColor = "#777";
-        copyButton.style.fontSize = "14px";
-      }, 3000);
-    }, function() {
-      console.error("Failed to copy.");
+            // Revert copy message and button icon and style after 3 seconds
+            setTimeout(function () {
+              copyMessage.textContent = "";
+              copyButton.innerHTML = "Copy";
+              copyButton.style.backgroundColor = "#777";
+              copyButton.style.fontSize = "14px";
+            }, 3000);
+          },
+          function () {
+            console.error("Failed to copy.");
+          }
+        );
+      });
     });
   });
 });
 
+// Print button event listener
+const printButton = document.getElementById("print-button");
+printButton.addEventListener("click", function () {
+  let printContent = ""; // Variable to store the printable content
 
-}});
+  // Loop through the courseInfoArray and build the printable content
+  for (let i = 0; i < courseInfoArray.length; i++) {
+    const courseInfo = courseInfoArray[i];
+    const { days, time, name, type, conflicts } = courseInfo;
 
+    // Add course information to the printable content
+    printContent += `Course: ${name}<br>`;
+    printContent += `Type: ${type}<br>`;
+    printContent += `Time: ${time}<br>`;
+    printContent += `Days: ${days.join(", ")}<br>`;
 
+    // Add conflicts, if any, to the printable content
+    if (conflicts.length > 0) {
+      printContent += "Conflicts:<br>";
+      for (let j = 0; j < conflicts.length; j++) {
+        const conflict = conflicts[j];
+        printContent += `- ${conflict.name} (Day: ${conflict.day}, Time: ${conflict.time})<br>`;
+      }
+    }
 
+    printContent += "<br>"; // Add a blank line between courses
+  }
 
-  });
+  // Open a new window for printing
+  const printWindow = window.open("", "_blank");
+
+  // Write the printable content to the new window
+  printWindow.document.open();
+  printWindow.document.write(`
+    <html>
+      <head>
+        <title>Print</title>
+        <style>
+          /* Add CSS styling for printing */
+          body { font-family: Arial, sans-serif; }
+        </style>
+      </head>
+      <body>
+        ${printContent}
+      </body>
+    </html>
+  `);
+  printWindow.document.close();
+
+  // Trigger printing in the new window
+  printWindow.print();
+});
+
 
 </script>
 
